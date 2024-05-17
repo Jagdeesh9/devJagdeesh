@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Background</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            /* overflow: hidden; */
+        }
+        @layer utilities {
+          .text-shadow-white {
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+          }
+        }
+        #background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <video id="background-video" loop muted autoplay>
+        <source src="./background.mp4" type="video/mp4">
+    </video>
+    <!-- Your content here -->
+
+
+    <!-- navigation bar starts here -->
+    
+    <nav class="bg-blue-500 bg-opacity-0 border-b border-gray-500">
+      <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+          <div class="relative flex h-16 items-center justify-between">
+              <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                  <!-- Mobile menu button-->
+                  <button id="mobile-menu-button" type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                      <span class="absolute -inset-0.5"></span>
+                      <span class="sr-only">Open main menu</span>
+                      <!-- Icon when menu is closed -->
+                      <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                      </svg>
+                      <!-- Icon when menu is open -->
+                      <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                  </button>
+              </div>
+              <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                  <div class="flex flex-shrink-0 items-center">
+                      <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
+                  </div>
+                  <div class="hidden sm:ml-6 sm:block">
+                      <div class="flex space-x-4">
+                          <!-- Navigation links -->
+                          <a href="#" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Dashboard</a>
+                          <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Team</a>
+                          <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Projects</a>
+        
+                      </div>
+                  </div>
+              </div>
+              <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                  
+          
+                  <!-- Profile dropdown -->
+                  <div class="relative ml-3">
+                    <div>
+                      <button type="button" class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                        <span class="absolute -inset-1.5"></span>
+                        <span class="sr-only">Open user menu</span>
+                        <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                      </button>
+                    </div>
+          
+                    <!--
+                      Dropdown menu, show/hide based on menu state.
+          
+                      Entering: "transition ease-out duration-100"
+                        From: "transform opacity-0 scale-95"
+                        To: "transform opacity-100 scale-100"
+                      Leaving: "transition ease-in duration-75"
+                        From: "transform opacity-100 scale-100"
+                        To: "transform opacity-0 scale-95"
+                    -->
+                   
+                  </div>
+                </div>
+          </div>
+      </div>
+      <!-- Mobile menu -->
+      <div class="sm:hidden" id="mobile-menu">
+          <div class="space-y-1 px-2 pb-3 pt-2">
+              <!-- Mobile navigation links -->
+               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+          <a href="#" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Dashboard</a>
+          <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Team</a>
+          <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Projects</a>
+          <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Calendar</a>
+          </div>
+      </div>
+    </nav>
+      
+
+    <!-- HERO SECTION STARTS  -->
+    <div class="relative isolate px-6 pt-14 lg:px-8 border-b border-red-500">
+      <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+        <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+      </div>
+      <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+       
+        <div class="text-center">
+          <h1 class="text-4xl font-semibold  text-shadow-white sm:text-6xl text-white">Hello <br> I am Jagdeesh Singh</h1>
+          <p class="mt-6 text-lg leading-8 text-shadow-white text-white">I'm a passionate Full Stack Web Developer specializing in the MERN stack. With a focus on crafting high-quality web applications, I bring ideas to life with robust backend systems and intuitive frontend interfaces. My commitment to excellence ensures that I deliver exceptional results that drive success for businesses and delight users.</p>
+          <div class="mt-10 flex items-center justify-center gap-x-6">
+            <a href="https://wa.me/9368567722?text=Hello can You create a website for me!" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Hire Me</a>
+
+            <a href="./projects.html" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">See Projects</a>
+
+            <!-- <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Learn more <span aria-hidden="true">→</span></a> -->
+          </div>
+        </div>
+      </div>
+      <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
+        <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+      </div>
+    </div>
+
+
+    <!-- about me section -->
+    <div class="bg-white bg-opacity-0 " >
+      <div class="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
+        <div class="relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0 bg-opacity-0">
+          <svg viewBox="0 0 1024 1024" class="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 lg:translate-y-0" aria-hidden="true">
+            <circle cx="512" cy="512" r="512" fill="url(#759c1415-0410-454c-8f7c-9a820de03641)" fill-opacity="0.7" />
+            <defs>
+              <radialGradient id="759c1415-0410-454c-8f7c-9a820de03641">
+                <stop stop-color="#7775D6" />
+                <stop offset="1" stop-color="#E935C1" />
+              </radialGradient>
+            </defs>
+          </svg>
+          <div class="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
+            <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">About Me</h2>
+            <p class="mt-6 text-lg leading-8 text-gray-300">I specialize in empowering businesses through dynamic online presence. From crafting sleek static websites to developing robust dynamic solutions, I leverage cutting-edge technology to elevate your digital footprint. Let's collaborate to bring your vision to life and dominate your online presence together.
+
+            </p>
+            <div class="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
+              <a href="#" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Contact Me</a>
+              <a href="#" class="text-sm font-semibold leading-6 text-white">Learn more <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+          <div class="relative mt-16 h-80 lg:mt-8" style="background-image: url('output-onlinegiftools.gif'); background-size: 100% 100%; background-position: center;">
+            <!-- <img src="./output-onlinegiftools.gif" class="absolute left-0 top-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10" src="" alt="App screenshot" width="1824" height="1080"> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- setion title  -->
+    <div class="mx-auto max-w-2xl text-center px-20">
+      <h2 class="text-3xl font-bold tracking-tight sm:text-4xl text-white">Skills</h2>
+      <p class="mt-2 text-lg leading-8 text-white">These are the Tools help me to create solution for businesses </p>
+    </div>
+
+    <!-- Skills section -->
+    <div class="mx-auto rounded overflow-hidden shadow-lg bg-white  bg-opacity-0" >
+      <div class="p-20">
+        <!-- <div class="font-bold text-xl mb-2 text-white">Portfolio Project Skills</div> -->
+        <div class="mb-8">
+          <div class="flex justify-between items-center">
+            <span class="text-white">HTML</span>
+            <span class="text-white">90%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full">
+            <div class="h-2 bg-blue-500 rounded-full" style="width: 90%;"></div>
+          </div>
+        </div>
+        <div class="mb-8">
+          <div class="flex justify-between items-center">
+            <span class="text-white">CSS</span>
+            <span class="text-white">85%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full">
+            <div class="h-2 bg-blue-500 rounded-full" style="width: 85%;"></div>
+          </div>
+        </div>
+        <div class="mb-8">
+          <div class="flex justify-between items-center">
+            <span class="text-white">JavaScript</span>
+            <span class="text-white">80%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full">
+            <div class="h-2 bg-blue-500 rounded-full" style="width: 80%;"></div>
+          </div>
+        </div>
+        <div class="mb-8">
+          <div class="flex justify-between items-center">
+            <span class="text-white">Node.js/Express</span>
+            <span class="text-white">75%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full">
+            <div class="h-2 bg-blue-500 rounded-full" style="width: 75%;"></div>
+          </div>
+        </div>
+        <div class="mb-8">
+          <div class="flex justify-between items-center">
+            <span class="text-white">MongoDB</span>
+            <span class="text-white">70%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full">
+            <div class="h-2 bg-blue-500 rounded-full" style="width: 70%;"></div>
+          </div>
+        </div>
+        <div class="mb-8">
+          <div class="flex justify-between items-center">
+            <span class="text-white">React</span>
+            <span class="text-white">65%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full">
+            <div class="h-2 bg-blue-500 rounded-full" style="width: 65%;"></div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- setion title conect us -->
+
+    <div class="mx-auto max-w-2xl text-center p-16">
+      <h2 class="text-3xl font-bold tracking-tight sm:text-4xl text-white">Lets Connect</h2>
+      <p class="mt-2 text-lg leading-8 text-white"> Join forces with me, and together, we'll transform your ideas into breathtaking realities. </p>
+    </div>
+
+    <!-- contecs -->
+    
+    <div class="flex items-center justify-center gap-x-20">
+      <div class="flex items-center justify-center bg-gradient-to-br  bg-opacity-0">
+        <div class="bg-white font-semibold text-center rounded-3xl border shadow-lg p-10 max-w-xs bg-opacity-0">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-10 h-10 text-red-600">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15.54V13.5l-4.5-3.05L11 7.5l4.5 3.05L13 13.5v4.04l-1 1.02zm7-1.02V13.5v-.04l-1-1.02-2.83 1.89L12 11.49l-2.17 1.84-2.83-1.89-1 1.02v.04v3.02l3.23 2.17.77.52.77-.52L12 17.96l4.23 2.85.77.52.77-.52L20 16.52z"/>
+          </svg>
+          <h1 class="text-lg text-gray-700"> John Doe </h1>
+          <h3 class="text-sm text-gray-400 "> Creative Director </h3>
+          <p class="text-xs text-gray-400 mt-4"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+          <button class="bg-indigo-600 px-8 py-2 mt-8 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide">Hire Me</button>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-center bg-gradient-to-br  bg-opacity-0">
+        <div class="bg-white font-semibold text-center rounded-3xl border shadow-lg p-10 max-w-xs bg-opacity-0">
+          <img class="mb-3 w-32 h-32 rounded-full shadow-lg mx-auto" src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80" alt="product designer">
+          <h1 class="text-lg text-gray-700"> John Doe </h1>
+          <h3 class="text-sm text-gray-400 "> Creative Director </h3>
+          <p class="text-xs text-gray-400 mt-4"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+          <button class="bg-indigo-600 px-8 py-2 mt-8 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide">Hire Me</button>
+        </div>
+      </div>
+    </div>
+    
+
+    
+  
+</body>
+<script>
+   document.addEventListener("DOMContentLoaded", function () {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            mobileMenuButton.addEventListener('click', function () {
+                const expanded = this.getAttribute('aria-expanded') === 'true' || false;
+                this.setAttribute('aria-expanded', !expanded);
+                mobileMenu.classList.toggle('hidden');
+            });
+        });
+</script>
+</html>
