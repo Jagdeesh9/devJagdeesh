@@ -3,18 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Background</title>
+    <title>Dev. Jagdeesh </title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         body {
             margin: 0;
             padding: 0;
             /* overflow: hidden; */
         }
+        
         @layer utilities {
           .text-shadow-white {
-            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.317);
+          }
+          .bg{
+            background-color: #91b5d594;
           }
         }
         #background-video {
@@ -25,6 +29,11 @@
             height: 100%;
             object-fit: cover;
             z-index: -1;
+        }
+        @media (max-width: 800px) {
+          .com{
+            display: none;
+          }
         }
     </style>
 </head>
@@ -37,7 +46,7 @@
 
     <!-- navigation bar starts here -->
     
-    <nav class="bg-blue-500 bg-opacity-0 border-b border-gray-500">
+    <nav class="bg border-b border-gray-500 sticky top-0">
       <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
           <div class="relative flex h-16 items-center justify-between">
               <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -57,14 +66,16 @@
               </div>
               <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                   <div class="flex flex-shrink-0 items-center">
-                      <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
+                      <!-- <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company"> -->
+                      <span class="ml-3 text-xl text-white">Jagdeesh.dev</span>
                   </div>
                   <div class="hidden sm:ml-6 sm:block">
                       <div class="flex space-x-4">
                           <!-- Navigation links -->
-                          <a href="#" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Dashboard</a>
-                          <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Team</a>
-                          <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Projects</a>
+                          <a href="#home" class="text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Home</a>
+                          <a href="#about" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">About</a>
+                          <a href="#contact" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Contact</a>
+                          <a href="#projects" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Projects</a>
         
                       </div>
                   </div>
@@ -78,7 +89,7 @@
                       <button type="button" class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                         <span class="absolute -inset-1.5"></span>
                         <span class="sr-only">Open user menu</span>
-                        <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                        <img class="h-8 w-8 rounded-full" src="./1680670725788.jpg" alt="">
                       </button>
                     </div>
           
@@ -102,17 +113,17 @@
           <div class="space-y-1 px-2 pb-3 pt-2">
               <!-- Mobile navigation links -->
                <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-          <a href="#" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Dashboard</a>
-          <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Team</a>
-          <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Projects</a>
-          <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Calendar</a>
+               <a href="#home" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Home</a>
+               <a href="#about" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">About</a>
+               <a href="#contact" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Contact</a>
+               <a href="#projects" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Projects</a> 
           </div>
       </div>
     </nav>
       
 
     <!-- HERO SECTION STARTS  -->
-    <div class="relative isolate px-6 pt-14 lg:px-8 border-b border-red-500">
+    <div class="relative isolate px-6 pt-14 lg:px-8" id="home">
       <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
         <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
       </div>
@@ -137,7 +148,7 @@
 
 
     <!-- about me section -->
-    <div class="bg-white bg-opacity-0 " >
+    <div class="bg-white bg-opacity-0 " id="about">
       <div class="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
         <div class="relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0 bg-opacity-0">
           <svg viewBox="0 0 1024 1024" class="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 lg:translate-y-0" aria-hidden="true">
@@ -155,7 +166,7 @@
 
             </p>
             <div class="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
-              <a href="#" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Contact Me</a>
+              <a href="tel:9368567722" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Contact Me</a>
               <a href="#" class="text-sm font-semibold leading-6 text-white">Learn more <span aria-hidden="true">→</span></a>
             </div>
           </div>
@@ -236,38 +247,158 @@
 
     <!-- setion title conect us -->
 
-    <div class="mx-auto max-w-2xl text-center p-16">
+    <div class="mx-auto max-w-2xl text-center p-16" id="contact">
       <h2 class="text-3xl font-bold tracking-tight sm:text-4xl text-white">Lets Connect</h2>
       <p class="mt-2 text-lg leading-8 text-white"> Join forces with me, and together, we'll transform your ideas into breathtaking realities. </p>
     </div>
 
     <!-- contecs -->
     
-    <div class="flex items-center justify-center gap-x-20">
-      <div class="flex items-center justify-center bg-gradient-to-br  bg-opacity-0">
+    <div class="flex flex-col md:flex-row items-center justify-center gap-y-8 md:gap-x-20" >
+      <div class="flex items-center justify-center bg-gradient-to-br bg-opacity-0">
         <div class="bg-white font-semibold text-center rounded-3xl border shadow-lg p-10 max-w-xs bg-opacity-0">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-10 h-10 text-red-600">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15.54V13.5l-4.5-3.05L11 7.5l4.5 3.05L13 13.5v4.04l-1 1.02zm7-1.02V13.5v-.04l-1-1.02-2.83 1.89L12 11.49l-2.17 1.84-2.83-1.89-1 1.02v.04v3.02l3.23 2.17.77.52.77-.52L12 17.96l4.23 2.85.77.52.77-.52L20 16.52z"/>
-          </svg>
-          <h1 class="text-lg text-gray-700"> John Doe </h1>
-          <h3 class="text-sm text-gray-400 "> Creative Director </h3>
-          <p class="text-xs text-gray-400 mt-4"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-          <button class="bg-indigo-600 px-8 py-2 mt-8 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide">Hire Me</button>
+          <a class="mb-3 w-32 h-32 rounded-full shadow-lg mx-auto bg-blue-500 px-3 py-3 mb" href="./Resume.pdf">
+            <i class="fa fa-whatsapp" style="color: white; font-size: 24px;"></i>
+          </a>
+          <!-- <h1 class="text-lg text-gray-700"> John Doe </h1> -->
+          <h3 class="text-sm text-gray-400 mt-3"> Message </h3>
+          <p class="text-xs text-gray-400 mt-4"> Let's turn your ideas into reality and create something amazing together</p>
+          <a href="https://api.whatsapp.com/send/?phone=9368567722&text=Hello+can+You+create+a+website+for+me%21&type=phone_number&app_absent=0">
+            <button class="bg-indigo-600 px-8 py-2 mt-8 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide">Send Message</button>
+          </a>
         </div>
       </div>
-
-      <div class="flex items-center justify-center bg-gradient-to-br  bg-opacity-0">
+    
+      <div class="flex items-center justify-center bg-gradient-to-br bg-opacity-0">
         <div class="bg-white font-semibold text-center rounded-3xl border shadow-lg p-10 max-w-xs bg-opacity-0">
-          <img class="mb-3 w-32 h-32 rounded-full shadow-lg mx-auto" src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80" alt="product designer">
-          <h1 class="text-lg text-gray-700"> John Doe </h1>
-          <h3 class="text-sm text-gray-400 "> Creative Director </h3>
-          <p class="text-xs text-gray-400 mt-4"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-          <button class="bg-indigo-600 px-8 py-2 mt-8 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide">Hire Me</button>
+          <a class="mb-3 w-32 h-32 rounded-full shadow-lg mx-auto bg-blue-500 px-3 py-3 mb" href="./Resume.pdf">
+            <i class="fa fa-download" style="color: white; font-size: 24px;"></i>
+          </a>
+          <!-- <h1 class="text-lg text-gray-700"> John Doe </h1> -->
+          <h3 class="text-sm text-gray-400 mt-3"> Resume / CV </h3>
+          <p class="text-xs text-gray-400 mt-4"> You can download a PDF version of my resume for offline viewing</p>
+          <a href="./Resume.pdf" download>
+            <button class="bg-indigo-600 px-8 py-2 mt-8 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide">Download</button>
+          </a>
         </div>
       </div>
     </div>
-    
 
+
+    <!-- expriences section -->
+    <div class="mx-auto max-w-2xl text-center p-16 shadow" id="projects">
+      <h2 class="text-3xl font-bold tracking-tight sm:text-4xl text-white">My Expriences</h2>
+      <p class="mt-2 text-lg leading-8 text-white">  </p>
+    </div>
+
+    <div class="container mx-auto px-20 py-10">
+      <!-- <h2 class="text-3xl font-semibold mb-6">Work Experience</h2> -->
+    
+      <!-- Job 1 -->
+      <div class="flex flex-col md:flex-row justify-between mb-8 border rounded p-5">
+        <div class="mb-4 md:w-3/4 md:mr-4 text-white">
+          <h3 class="text-xl font-semibold mb-2">Teacher at Brilliant Makers</h3>
+          <p class=" mb-2">Duration: Jan 2023 - Present</p>
+          <ul class="mb-4">
+            <li>Teaches Programming languages - C, C++, Python</li>
+            <li>Teaches Frontend Development - HTML, CSS, JS</li>
+          </ul>
+          <!-- <a href="https://api.whatsapp.com/send/?phone=9368567722&text=Hello+can+You+create+a+website+for+me%21&type=phone_number&app_absent=0">
+            <button class="bg-indigo-600 px-8 py-2 mt-8 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide">Send Message</button>
+          </a> -->
+        </div>
+        <div class="md:w-1/4 com">
+          <img src="./BM.png" alt="Company 1 Logo" class="object-contain h-24 md:h-auto w-full md:w-auto">
+        </div>
+      </div>
+    
+      <div class="flex flex-col md:flex-row justify-between mb-8 border rounded p-5">
+        <div class="mb-4 md:w-3/4 md:mr-4 text-white">
+          <h3 class="text-xl font-semibold mb-2">Camp Rishikesh inn</h3>
+          <p class=" mb-2">Freelance Project</p>
+          <ul class="mb-4">
+            <li>Create A Static Website of 16 pages</li>
+            <li>Complete responsiveness for all screen sizes</li>
+            <li>Create a fully responsive image and video gallery</li>
+            <li>Utilize HTML, CSS, and JavaScript</li>
+            <li>Implement SEO best practices for improved search engine visibility</li>
+            <!-- <li>Optimize website performance for faster loading times</li> -->
+            <li>Integrate contact forms for user interaction</li>
+          </ul>
+          
+          <a href="https://www.camprishikeshinn.com">
+            <button class="bg-indigo-600 px-8 py-2 mt-8 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide">Visit Website</button>
+          </a>
+        </div>
+        <div class="md:w-1/4 com">
+          <img src="./pnn.png" alt="Company 1 Logo" class="object-contain h-24 md:h-auto w-full md:w-auto">
+        </div>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between mb-8 border rounded p-5">
+        <div class="mb-4 md:w-3/4 md:mr-4 text-white">
+          <h3 class="text-xl font-semibold mb-2">Wondrlust</h3>
+          <p class=" mb-2">Acadmic Project</p>
+          <ul class="mb-4">
+            <li>Node, Express, MongoDB</li>
+            <li>Authentication & Authorization using Passport</li>
+            <li>File upload using Multer and Cloudinary</li>
+            <li>Implement MVC pattern to improve readability</li>
+            <li>Use flash messages for user notifications</li>
+            <li>Learn about MongoDB relationships</li>
+            <li>Error handling and middleware implementation</li>
+          </ul>
+          
+          
+          <a href="https://wonderlust-v2al.onrender.com">
+            <button class="bg-indigo-600 px-8 py-2 mt-8 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide">Visit Website</button>
+          </a>
+        </div>
+        <div class="md:w-1/4 com">
+          <i ></i>
+          <!-- <img src="./pnn.png" alt="Company 1 Logo" class="object-contain h-24 md:h-auto w-full md:w-auto"> -->
+        </div>
+      </div>
+     
+      <!-- Freelance Projects, Personal Projects, Achievements, Testimonials sections go here -->
+    
+    </div>
+    
+    
+    <!-- footer -->
+    <footer class="text-gray-600 body-font px-20">
+      <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+        <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+          <!-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+          </svg> -->
+          <span class="ml-3 text-xl text-white">Jagdeesh.dev</span>
+        </a>
+        <p class="text-sm  sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4 text-white">Feel free to reach out for collaborations, inquiries, or just to say hello.
+          <!-- <a href="https://twitter.com/knyttneve" class="text-gray-600 ml-1" rel="noopener noreferrer" target="_blank">@knyttneve</a> -->
+        </p>
+        <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start text-white">
+          
+          <a href="https://twitter.com/_Jagdeesh_5" class="ml-3 text-white">
+            <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+              <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/0_jagdeesh_9?igsh=MXV4dWJ2dDg3NHpodA== " class="ml-3 text-white">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+            </svg>
+          </a>
+          <a href="www.linkedin.com/in/jagdeesh09" class="ml-3 text-white">
+            <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
+              <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+              <circle cx="4" cy="4" r="2" stroke="none"></circle>
+            </svg>
+          </a>
+        </span>
+      </div>
+    </footer>
     
   
 </body>
