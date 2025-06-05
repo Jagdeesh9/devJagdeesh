@@ -1,417 +1,690 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dev. Jagdeesh </title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jagdeesh - Full Stack Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            /* overflow: hidden; */
+        /* Consistent Animation Variables */
+        :root {
+            --animation-duration: 8s;
+            --animation-easing: cubic-bezier(0.45, 0.05, 0.55, 0.95);
         }
-        
-        @layer utilities {
-          .text-shadow-white {
-            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.317);
-          }
-          .bg{
-            background-color: #91b5d594;
-          }
+
+        /* Gradient Animation */
+        .animate-gradient {
+            background-size: 300%;
+            animation: animatedGradient var(--animation-duration) var(--animation-easing) infinite alternate;
         }
-        #background-video {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+
+        @keyframes animatedGradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Card Hover Effects */
+        .card {
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+
+        .card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(147, 51, 234, 0.3);
+        }
+
+        /* Pulse Animation for Background Elements */
+        @keyframes pulse {
+            0% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(1.05);
+            }
+
+            100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+        }
+
+        .animate-pulse {
+            animation: pulse 6s var(--animation-easing) infinite;
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .animate-float {
+            animation: float 6s var(--animation-easing) infinite;
+        }
+
+        /* Section Entry Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-animate {
+            animation: fadeInUp 0.8s var(--animation-easing) forwards;
+        }
+
+        /* Glow Effect */
+        .glow {
+            filter: drop-shadow(0 0 8px rgba(147, 51, 234, 0.5));
+            transition: filter 0.3s ease;
+        }
+
+        .glow:hover {
+            filter: drop-shadow(0 0 12px rgba(147, 51, 234, 0.8));
+        }
+
+        /* Background Blobs */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.3;
             z-index: -1;
         }
-        @media (max-width: 800px) {
-          .com{
-            display: none;
-          }
+
+        .blob-purple {
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.8) 0%, rgba(217, 70, 239, 0.8) 100%);
+        }
+
+        .blob-green {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.8) 0%, rgba(20, 184, 166, 0.8) 100%);
+        }
+
+        /* Underline Animation */
+        .underline-animate {
+            position: relative;
+            display: inline-block;
+        }
+
+        .underline-animate::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: linear-gradient(90deg, #8b5cf6, #ec4899);
+            transition: width 0.3s ease;
+        }
+
+        .underline-animate:hover::after {
+            width: 100%;
+        }
+
+        /* Button Hover Effect */
+        .btn-hover {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+
+        .btn-hover:hover::before {
+            left: 100%;
         }
     </style>
 </head>
-<body>
-    <video id="background-video" loop muted autoplay>
-        <source src="./background.mp4" type="video/mp4">
-    </video>
-    <!-- Your content here -->
 
+<body class="bg-gray-900 text-gray-100">
+    <!-- Background Blobs -->
+    <div class="fixed inset-0 overflow-hidden -z-10">
+        <div class="blob blob-purple w-64 h-64 top-20 left-20 animate-float" data-aos="fade-in" data-aos-delay="100">
+        </div>
+        <div class="blob blob-green w-80 h-80 bottom-20 right-20 animate-float animation-delay-2000" data-aos="fade-in"
+            data-aos-delay="300"></div>
+        <div class="blob blob-purple w-96 h-96 top-1/2 right-1/4 animate-float animation-delay-3000" data-aos="fade-in"
+            data-aos-delay="500"></div>
+        <div class="blob blob-green w-72 h-72 bottom-1/3 left-1/4 animate-float animation-delay-4000" data-aos="fade-in"
+            data-aos-delay="700"></div>
+    </div>
 
-    <!-- navigation bar starts here -->
-    
-    <nav class="bg border-b border-gray-500 sticky top-0">
-      <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-          <div class="relative flex h-16 items-center justify-between">
-              <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                  <!-- Mobile menu button-->
-                  <button id="mobile-menu-button" type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
-                      <span class="absolute -inset-0.5"></span>
-                      <span class="sr-only">Open main menu</span>
-                      <!-- Icon when menu is closed -->
-                      <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                      </svg>
-                      <!-- Icon when menu is open -->
-                      <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                  </button>
-              </div>
-              <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                  <div class="flex flex-shrink-0 items-center">
-                      <!-- <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company"> -->
-                      <span class="ml-3 text-xl text-white">Jagdeesh.dev</span>
-                  </div>
-                  <div class="hidden sm:ml-6 sm:block">
-                      <div class="flex space-x-4">
-                          <!-- Navigation links -->
-                          <a href="#home" class="text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Home</a>
-                          <a href="#about" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">About</a>
-                          <a href="#contact" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Contact</a>
-                          <a href="#projects" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Projects</a>
-        
-                      </div>
-                  </div>
-              </div>
-              <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                  
-          
-                  <!-- Profile dropdown -->
-                  <div class="relative ml-3">
-                    <div>
-                      <button type="button" class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                        <span class="absolute -inset-1.5"></span>
-                        <span class="sr-only">Open user menu</span>
-                        <img class="h-8 w-8 rounded-full" src="./1680670725788.jpg" alt="">
-                      </button>
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Hero Section -->
+        <section class="min-h-screen flex items-center justify-center relative overflow-hidden section-animate"
+            data-aos="fade-up" data-aos-duration="1000">
+            <div class="text-center max-w-3xl z-10">
+                <div class="relative mx-auto w-32 h-32 mb-8 group" data-aos="zoom-in" data-aos-delay="200">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-purple-600 to-green-500 rounded-full blur-lg opacity-60 animate-gradient">
                     </div>
-          
-                    <!--
-                      Dropdown menu, show/hide based on menu state.
-          
-                      Entering: "transition ease-out duration-100"
-                        From: "transform opacity-0 scale-95"
-                        To: "transform opacity-100 scale-100"
-                      Leaving: "transition ease-in duration-75"
-                        From: "transform opacity-100 scale-100"
-                        To: "transform opacity-0 scale-95"
-                    -->
-                   
-                  </div>
+                    <img src="./images/Jagdeesh-3d.png" alt="Profile Avatar"
+                        class="relative w-full h-full rounded-full object-cover border-4 border-gray-800 glow hover:border-purple-500 transition-all duration-300">
                 </div>
-          </div>
-      </div>
-      <!-- Mobile menu -->
-      <div class="sm:hidden" id="mobile-menu">
-          <div class="space-y-1 px-2 pb-3 pt-2">
-              <!-- Mobile navigation links -->
-               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-               <a href="#home" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Home</a>
-               <a href="#about" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">About</a>
-               <a href="#contact" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Contact</a>
-               <a href="#projects" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Projects</a> 
-          </div>
-      </div>
-    </nav>
-      
 
-    <!-- HERO SECTION STARTS  -->
-    <div class="relative isolate px-6 pt-14 lg:px-8" id="home">
-      <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
-        <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
-      </div>
-      <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-       
-        <div class="text-center">
-          <h1 class="text-4xl font-semibold  text-shadow-white sm:text-6xl text-white">Hello <br> I am Jagdeesh Singh</h1>
-          <p class="mt-6 text-lg leading-8 text-shadow-white text-white">I'm a passionate Full Stack Web Developer specializing in the MERN stack. With a focus on crafting high-quality web applications, I bring ideas to life with robust backend systems and intuitive frontend interfaces. My commitment to excellence ensures that I deliver exceptional results that drive success for businesses and delight users.</p>
-          <div class="mt-10 flex items-center justify-center gap-x-6">
-            <a href="https://wa.me/9368567722?text=Hello can You create a website for me!" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Hire Me</a>
+                <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4" data-aos="fade-up" data-aos-delay="300">
+                    Hey, I'm <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-green-400 animate-gradient">Jagdeesh</span>
+                    ✨<br />
+                    <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-300 to-green-400 animate-gradient">Full
+                        Stack Developer</span>
+                </h1>
 
-            <a href="./projects.html" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">See Projects</a>
+                <p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="400">
+                    I craft digital experiences with solid foundations in design and development.
+                    Passionate about creating seamless user interfaces and robust backend systems.
+                </p>
 
-            <!-- <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Learn more <span aria-hidden="true">→</span></a> -->
-          </div>
-        </div>
-      </div>
-      <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
-        <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
-      </div>
-    </div>
+                <div class="flex justify-center gap-4 flex-wrap" data-aos="fade-up" data-aos-delay="500">
+                    <a href="#contact"
+                        class="btn-hover px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-green-500 text-white font-medium transition-all duration-300 hover:from-purple-700 hover:to-green-600">
+                        📩 Contact Me
+                    </a>
+                    
+                </div>
 
-
-    <!-- about me section -->
-    <div class="bg-white bg-opacity-0 " id="about">
-      <div class="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
-        <div class="relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0 bg-opacity-0">
-          <svg viewBox="0 0 1024 1024" class="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 lg:translate-y-0" aria-hidden="true">
-            <circle cx="512" cy="512" r="512" fill="url(#759c1415-0410-454c-8f7c-9a820de03641)" fill-opacity="0.7" />
-            <defs>
-              <radialGradient id="759c1415-0410-454c-8f7c-9a820de03641">
-                <stop stop-color="#7775D6" />
-                <stop offset="1" stop-color="#E935C1" />
-              </radialGradient>
-            </defs>
-          </svg>
-          <div class="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
-            <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">About Me</h2>
-            <p class="mt-6 text-lg leading-8 text-gray-300">I specialize in empowering businesses through dynamic online presence. From crafting sleek static websites to developing robust dynamic solutions, I leverage cutting-edge technology to elevate your digital footprint. Let's collaborate to bring your vision to life and dominate your online presence together.
-
-            </p>
-            <div class="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
-              <a href="tel:9368567722" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Contact Me</a>
-              <a href="#" class="text-sm font-semibold leading-6 text-white">Learn more <span aria-hidden="true">→</span></a>
+                <div class="flex justify-center gap-6 mt-8 text-2xl" data-aos="fade-up" data-aos-delay="600">
+                    <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+                        class="text-gray-400 hover:text-purple-400 transition-colors duration-300 glow">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/jagdeesh09" target="_blank" rel="noopener noreferrer"
+                        class="text-gray-400 hover:text-purple-400 transition-colors duration-300 glow">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://twitter.com/_Jagdeesh_5" target="_blank" rel="noopener noreferrer"
+                        class="text-gray-400 hover:text-purple-400 transition-colors duration-300 glow">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://www.instagram.com/0_jagdeesh_9" target="_blank" rel="noopener noreferrer"
+                        class="text-gray-400 hover:text-purple-400 transition-colors duration-300 glow">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
             </div>
-          </div>
-          <div class="relative mt-16 h-80 lg:mt-8" style="background-image: url('output-onlinegiftools.gif'); background-size: 100% 100%; background-position: center;">
-            <!-- <img src="./output-onlinegiftools.gif" class="absolute left-0 top-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10" src="" alt="App screenshot" width="1824" height="1080"> -->
-          </div>
-        </div>
-      </div>
-    </div>
+        </section>
 
-    <!-- setion title  -->
-    <div class="mx-auto max-w-2xl text-center px-20">
-      <h2 class="text-3xl font-bold tracking-tight sm:text-4xl text-white">Skills</h2>
-      <p class="mt-2 text-lg leading-8 text-white">These are the Tools help me to create solution for businesses </p>
-    </div>
+        <!-- Skills Section -->
+        <section class="py-20 section-animate" data-aos="fade-up" data-aos-duration="1000">
+            <div class="text-center mb-16" data-aos="fade-up" data-aos-delay="100">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-green-400 animate-gradient">My
+                        Skills</span>
+                </h2>
+                <p class="text-lg text-gray-400 max-w-2xl mx-auto">
+                    Proficient in building full-stack applications with modern technologies, delivering scalable and
+                    user-focused solutions.
+                </p>
+            </div>
 
-    <!-- Skills section -->
-    <div class="mx-auto rounded overflow-hidden shadow-lg bg-white  bg-opacity-0" >
-      <div class="p-20">
-        <!-- <div class="font-bold text-xl mb-2 text-white">Portfolio Project Skills</div> -->
-        <div class="mb-8">
-          <div class="flex justify-between items-center">
-            <span class="text-white">HTML</span>
-            <span class="text-white">90%</span>
-          </div>
-          <div class="w-full bg-gray-200 rounded-full">
-            <div class="h-2 bg-blue-500 rounded-full" style="width: 90%;"></div>
-          </div>
-        </div>
-        <div class="mb-8">
-          <div class="flex justify-between items-center">
-            <span class="text-white">CSS</span>
-            <span class="text-white">85%</span>
-          </div>
-          <div class="w-full bg-gray-200 rounded-full">
-            <div class="h-2 bg-blue-500 rounded-full" style="width: 85%;"></div>
-          </div>
-        </div>
-        <div class="mb-8">
-          <div class="flex justify-between items-center">
-            <span class="text-white">JavaScript</span>
-            <span class="text-white">80%</span>
-          </div>
-          <div class="w-full bg-gray-200 rounded-full">
-            <div class="h-2 bg-blue-500 rounded-full" style="width: 80%;"></div>
-          </div>
-        </div>
-        <div class="mb-8">
-          <div class="flex justify-between items-center">
-            <span class="text-white">Node.js/Express</span>
-            <span class="text-white">75%</span>
-          </div>
-          <div class="w-full bg-gray-200 rounded-full">
-            <div class="h-2 bg-blue-500 rounded-full" style="width: 75%;"></div>
-          </div>
-        </div>
-        <div class="mb-8">
-          <div class="flex justify-between items-center">
-            <span class="text-white">MongoDB</span>
-            <span class="text-white">70%</span>
-          </div>
-          <div class="w-full bg-gray-200 rounded-full">
-            <div class="h-2 bg-blue-500 rounded-full" style="width: 70%;"></div>
-          </div>
-        </div>
-        <div class="mb-8">
-          <div class="flex justify-between items-center">
-            <span class="text-white">React</span>
-            <span class="text-white">65%</span>
-          </div>
-          <div class="w-full bg-gray-200 rounded-full">
-            <div class="h-2 bg-blue-500 rounded-full" style="width: 65%;"></div>
-          </div>
-        </div>
-      </div>
-      
-    </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Skill Card 1 -->
+                <div class="card bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-purple-500"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <div
+                        class="w-12 h-12 flex items-center justify-center rounded-xl bg-gradient-to-r from-purple-600 to-green-500 text-white mb-4">
+                        <i class="fab fa-node-js text-xl"></i>
+                    </div>
+                    <h3
+                        class="text-xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-green-400">
+                        Express.js</h3>
+                    <p class="text-gray-400">
+                        Building robust server-side APIs and middleware for seamless backend functionality with Node.js
+                        and Express.
+                    </p>
+                </div>
 
-    <!-- setion title conect us -->
+                <!-- Skill Card 2 -->
+                <div class="card bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-purple-500"
+                    data-aos="fade-up" data-aos-delay="300">
+                    <div
+                        class="w-12 h-12 flex items-center justify-center rounded-xl bg-gradient-to-r from-purple-600 to-green-500 text-white mb-4">
+                        <i class="fab fa-react text-xl"></i>
+                    </div>
+                    <h3
+                        class="text-xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-green-400">
+                        React</h3>
+                    <p class="text-gray-400">
+                        Crafting dynamic, component-based user interfaces with modern React workflows, hooks, and state
+                        management.
+                    </p>
+                </div>
 
-    <div class="mx-auto max-w-2xl text-center p-16" id="contact">
-      <h2 class="text-3xl font-bold tracking-tight sm:text-4xl text-white">Lets Connect</h2>
-      <p class="mt-2 text-lg leading-8 text-white"> Join forces with me, and together, we'll transform your ideas into breathtaking realities. </p>
-    </div>
+                <!-- Skill Card 3 -->
+                <div class="card bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-purple-500"
+                    data-aos="fade-up" data-aos-delay="400">
+                    <div
+                        class="w-12 h-12 flex items-center justify-center rounded-xl bg-gradient-to-r from-purple-600 to-green-500 text-white mb-4">
+                        <i class="fab fa-envira text-xl"></i>
+                    </div>
+                    <h3
+                        class="text-xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-green-400">
+                        MongoDB</h3>
+                    <p class="text-gray-400">
+                        Designing and managing NoSQL databases for efficient data storage and retrieval in scalable
+                        applications.
+                    </p>
+                </div>
 
-    <!-- contecs -->
-    
-    <div class="flex flex-col md:flex-row items-center justify-center gap-y-8 md:gap-x-20" >
-      <div class="flex items-center justify-center bg-gradient-to-br bg-opacity-0">
-        <div class="bg-white font-semibold text-center rounded-3xl border shadow-lg p-10 max-w-xs bg-opacity-0">
-          <a class="mb-3 w-32 h-32 rounded-full shadow-lg mx-auto bg-blue-500 px-3 py-3 mb" href="./Resume.pdf">
-            <i class="fa fa-whatsapp" style="color: white; font-size: 24px;"></i>
-          </a>
-          <!-- <h1 class="text-lg text-gray-700"> John Doe </h1> -->
-          <h3 class="text-sm text-gray-400 mt-3"> Message </h3>
-          <p class="text-xs text-gray-400 mt-4"> Let's turn your ideas into reality and create something amazing together</p>
-          <a href="https://api.whatsapp.com/send/?phone=9368567722&text=Hello+can+You+create+a+website+for+me%21&type=phone_number&app_absent=0">
-            <button class="bg-indigo-600 px-8 py-2 mt-8 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide">Send Message</button>
-          </a>
-        </div>
-      </div>
-    
-      <div class="flex items-center justify-center bg-gradient-to-br bg-opacity-0">
-        <div class="bg-white font-semibold text-center rounded-3xl border shadow-lg p-10 max-w-xs bg-opacity-0">
-          <a class="mb-3 w-32 h-32 rounded-full shadow-lg mx-auto bg-blue-500 px-3 py-3 mb" href="./Resume.pdf">
-            <i class="fa fa-download" style="color: white; font-size: 24px;"></i>
-          </a>
-          <!-- <h1 class="text-lg text-gray-700"> John Doe </h1> -->
-          <h3 class="text-sm text-gray-400 mt-3"> Resume / CV </h3>
-          <p class="text-xs text-gray-400 mt-4"> You can download a PDF version of my resume for offline viewing</p>
-          <a href="./Resume.pdf" download>
-            <button class="bg-indigo-600 px-8 py-2 mt-8 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide">Download</button>
-          </a>
-        </div>
-      </div>
-    </div>
+                <!-- Skill Card 4 -->
+                <div class="card bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-purple-500"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <div
+                        class="w-12 h-12 flex items-center justify-center rounded-xl bg-gradient-to-r from-purple-600 to-green-500 text-white mb-4">
+                        <i class="fab fa-node text-xl"></i>
+                    </div>
+                    <h3
+                        class="text-xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-green-400">
+                        Node.js</h3>
+                    <p class="text-gray-400">
+                        Developing high-performance server-side applications with event-driven architecture and
+                        asynchronous I/O.
+                    </p>
+                </div>
 
+                <!-- Skill Card 5 -->
+                <div class="card bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-purple-500"
+                    data-aos="fade-up" data-aos-delay="300">
+                    <div
+                        class="w-12 h-12 flex items-center justify-center rounded-xl bg-gradient-to-r from-purple-600 to-green-500 text-white mb-4">
+                        <i class="fab fa-js-square text-xl"></i>
+                    </div>
+                    <h3
+                        class="text-xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-green-400">
+                        JavaScript/TypeScript</h3>
+                    <p class="text-gray-400">
+                        Writing clean, maintainable code with ES6+ and TypeScript for type-safe development and better
+                        tooling.
+                    </p>
+                </div>
 
-    <!-- expriences section -->
-    <div class="mx-auto max-w-2xl text-center p-16 shadow" id="projects">
-      <h2 class="text-3xl font-bold tracking-tight sm:text-4xl text-white">My Expriences</h2>
-      <p class="mt-2 text-lg leading-8 text-white">  </p>
-    </div>
+                <!-- Skill Card 6 -->
+                <div class="card bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-purple-500"
+                    data-aos="fade-up" data-aos-delay="400">
+                    <div
+                        class="w-12 h-12 flex items-center justify-center rounded-xl bg-gradient-to-r from-purple-600 to-green-500 text-white mb-4">
+                        <i class="fas fa-tools text-xl"></i>
+                    </div>
+                    <h3
+                        class="text-xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-green-400">
+                        Development Tools</h3>
+                    <p class="text-gray-400">
+                        Proficient in Git/GitHub, Docker, Postman, and deployment platforms for CI/CD workflows.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-    <div class="container mx-auto px-20 py-10">
-      <!-- <h2 class="text-3xl font-semibold mb-6">Work Experience</h2> -->
-    
-      <!-- Job 1 -->
-      <div class="flex flex-col md:flex-row justify-between mb-8 border rounded p-5">
-        <div class="mb-4 md:w-3/4 md:mr-4 text-white">
-          <h3 class="text-xl font-semibold mb-2">Teacher at Brilliant Makers</h3>
-          <p class=" mb-2">Duration: Jan 2023 - Present</p>
-          <ul class="mb-4">
-            <li>Teaches Programming languages - C, C++, Python</li>
-            <li>Teaches Frontend Development - HTML, CSS, JS</li>
-          </ul>
-          <!-- <a href="https://api.whatsapp.com/send/?phone=9368567722&text=Hello+can+You+create+a+website+for+me%21&type=phone_number&app_absent=0">
-            <button class="bg-indigo-600 px-8 py-2 mt-8 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide">Send Message</button>
-          </a> -->
-        </div>
-        <div class="md:w-1/4 com">
-          <img src="./BM.png" alt="Company 1 Logo" class="object-contain h-24 md:h-auto w-full md:w-auto">
-        </div>
-      </div>
-    
-      <div class="flex flex-col md:flex-row justify-between mb-8 border rounded p-5">
-        <div class="mb-4 md:w-3/4 md:mr-4 text-white">
-          <h3 class="text-xl font-semibold mb-2">Camp Rishikesh inn</h3>
-          <p class=" mb-2">Freelance Project</p>
-          <ul class="mb-4">
-            <li>Create A Static Website of 16 pages</li>
-            <li>Complete responsiveness for all screen sizes</li>
-            <li>Create a fully responsive image and video gallery</li>
-            <li>Utilize HTML, CSS, and JavaScript</li>
-            <li>Implement SEO best practices for improved search engine visibility</li>
-            <!-- <li>Optimize website performance for faster loading times</li> -->
-            <li>Integrate contact forms for user interaction</li>
-          </ul>
-          
-          <a href="https://www.camprishikeshinn.com">
-            <button class="bg-indigo-600 px-8 py-2 mt-8 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide">Visit Website</button>
-          </a>
-        </div>
-        <div class="md:w-1/4 com">
-          <img src="./pnn.png" alt="Company 1 Logo" class="object-contain h-24 md:h-auto w-full md:w-auto">
-        </div>
-      </div>
+        <!-- Services Section -->
+        <section class="py-20 section-animate" data-aos="fade-up" data-aos-duration="1000">
+            <div class="text-center mb-16" data-aos="fade-up" data-aos-delay="100">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-green-400 animate-gradient">What
+                        I Offer</span>
+                </h2>
+                <p class="text-lg text-gray-400 max-w-2xl mx-auto">
+                    Comprehensive services to bring your digital ideas to life with quality and precision.
+                </p>
+            </div>
 
-      <div class="flex flex-col md:flex-row justify-between mb-8 border rounded p-5">
-        <div class="mb-4 md:w-3/4 md:mr-4 text-white">
-          <h3 class="text-xl font-semibold mb-2">Wondrlust</h3>
-          <p class=" mb-2">Acadmic Project</p>
-          <ul class="mb-4">
-            <li>Node, Express, MongoDB</li>
-            <li>Authentication & Authorization using Passport</li>
-            <li>File upload using Multer and Cloudinary</li>
-            <li>Implement MVC pattern to improve readability</li>
-            <li>Use flash messages for user notifications</li>
-            <li>Learn about MongoDB relationships</li>
-            <li>Error handling and middleware implementation</li>
-          </ul>
-          
-          
-          <a href="https://wonderlust-v2al.onrender.com">
-            <button class="bg-indigo-600 px-8 py-2 mt-8 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide">Visit Website</button>
-          </a>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Service 1 -->
+                <div class="card bg-gray-800 p-8 rounded-xl border border-gray-700 hover:border-purple-500"
+                    data-aos="fade-right" data-aos-delay="200">
+                    <div
+                        class="w-14 h-14 flex items-center justify-center rounded-xl bg-gradient-to-r from-purple-600 to-green-500 text-white mb-6 text-2xl">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-white">Full Stack Development</h3>
+                    <p class="text-gray-400 mb-4">
+                        End-to-end web application development from concept to deployment with modern technologies.
+                    </p>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-purple-500 mr-2"></i>
+                            Custom Web Applications
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-purple-500 mr-2"></i>
+                            API Development
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-purple-500 mr-2"></i>
+                            Database Design
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="card bg-gray-800 p-8 rounded-xl border border-gray-700 hover:border-purple-500"
+                    data-aos="fade-up" data-aos-delay="300">
+                    <div
+                        class="w-14 h-14 flex items-center justify-center rounded-xl bg-gradient-to-r from-purple-600 to-green-500 text-white mb-6 text-2xl">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-white">UI/UX Design</h3>
+                    <p class="text-gray-400 mb-4">
+                        Beautiful, intuitive interfaces designed with user experience as the top priority.
+                    </p>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-purple-500 mr-2"></i>
+                            Wireframing & Prototyping
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-purple-500 mr-2"></i>
+                            Responsive Design
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-purple-500 mr-2"></i>
+                            User Testing
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="card bg-gray-800 p-8 rounded-xl border border-gray-700 hover:border-purple-500"
+                    data-aos="fade-left" data-aos-delay="400">
+                    <div
+                        class="w-14 h-14 flex items-center justify-center rounded-xl bg-gradient-to-r from-purple-600 to-green-500 text-white mb-6 text-2xl">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-white">Mobile Development</h3>
+                    <p class="text-gray-400 mb-4">
+                        Cross-platform mobile applications that deliver seamless experiences on any device.
+                    </p>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-purple-500 mr-2"></i>
+                            Flutter Development
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-purple-500 mr-2"></i>
+                            React Native
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-purple-500 mr-2"></i>
+                            Progressive Web Apps
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="py-20 bg-gray-800 rounded-3xl section-animate" id="experiences" data-aos="fade-up"
+            data-aos-duration="1000">
+            <div class="text-center mb-16" data-aos="fade-up" data-aos-delay="100">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-green-400 animate-gradient">My
+                        Journey</span>
+                </h2>
+                <p class="text-lg text-gray-400 max-w-2xl mx-auto">
+                    Professional experiences and projects that have shaped my development career.
+                </p>
+            </div>
+
+            <div class="space-y-8 max-w-4xl mx-auto">
+                <!-- Experience 1 -->
+                <div class="card bg-gray-700 p-6 rounded-xl border border-gray-600 hover:border-purple-500"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                        <h3 class="text-xl font-semibold text-purple-400">Software Development Intern</h3>
+                        <span class="text-gray-400 text-sm mt-1 md:mt-0">Dec 2023 - Jun 2024 | Rishikesh</span>
+                    </div>
+                    <h4 class="text-lg text-white mb-3">Ilika Software Technologies</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex">
+                            <i class="fas fa-circle text-purple-500 text-xs mt-2 mr-2"></i>
+                            <span>Developed interactive UI components using Flutter and implemented BLoC
+                                architecture</span>
+                        </li>
+                        <li class="flex">
+                            <i class="fas fa-circle text-purple-500 text-xs mt-2 mr-2"></i>
+                            <span>Integrated and managed APIs, binding data to UI for seamless user experiences</span>
+                        </li>
+                        <li class="flex">
+                            <i class="fas fa-circle text-purple-500 text-xs mt-2 mr-2"></i>
+                            <span>Collaborated with cross-functional teams to design and deliver mobile app
+                                features</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Experience 2 -->
+                <div class="card bg-gray-700 p-6 rounded-xl border border-gray-600 hover:border-purple-500"
+                    data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                        <h3 class="text-xl font-semibold text-purple-400">Full-Stack Developer Intern</h3>
+                        <span class="text-gray-400 text-sm mt-1 md:mt-0">May 2024 - Aug 2024 | Remote</span>
+                    </div>
+                    <h4 class="text-lg text-white mb-3">Uptoskill</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex">
+                            <i class="fas fa-circle text-purple-500 text-xs mt-2 mr-2"></i>
+                            <span>Built responsive UI components for a quiz application using HTML, CSS, JavaScript, and
+                                PHP</span>
+                        </li>
+                        <li class="flex">
+                            <i class="fas fa-circle text-purple-500 text-xs mt-2 mr-2"></i>
+                            <span>Contributed to a study platform using the MERN stack (MongoDB, Express.js, React.js,
+                                Node.js)</span>
+                        </li>
+                        <li class="flex">
+                            <i class="fas fa-circle text-purple-500 text-xs mt-2 mr-2"></i>
+                            <span>Optimized code for performance and collaborated with team members</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Project 1 -->
+                <div class="card bg-gray-700 p-6 rounded-xl border border-gray-600 hover:border-purple-500"
+                    data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                        <h3 class="text-xl font-semibold text-purple-400">Wonderlust</h3>
+                        <span class="text-gray-400 text-sm mt-1 md:mt-0">Academic Project</span>
+                    </div>
+                    <p class="text-gray-300 mb-4">A business listing platform that enables users to add businesses,
+                        explore listings, and provide ratings.</p>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex">
+                            <i class="fas fa-circle text-purple-500 text-xs mt-2 mr-2"></i>
+                            <span>Developed with Node.js, EJS, and MongoDB</span>
+                        </li>
+                        <li class="flex">
+                            <i class="fas fa-circle text-purple-500 text-xs mt-2 mr-2"></i>
+                            <span>Implemented responsive design and secure backend APIs</span>
+                        </li>
+                    </ul>
+                    <div class="mt-4">
+                        <a href="https://wonderlust-v2al.onrender.com" target="_blank" rel="noopener noreferrer"
+                            class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-600 to-green-500 text-white rounded-lg hover:from-purple-700 hover:to-green-600 transition-all duration-300">
+                            Visit Website <i class="fas fa-external-link-alt ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="card bg-gray-700 p-6 rounded-xl border border-gray-600 hover:border-purple-500"
+                    data-aos="fade-up" data-aos-delay="500">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                        <h3 class="text-xl font-semibold text-purple-400">Camp Rishikesh Inn</h3>
+                        <span class="text-gray-400 text-sm mt-1 md:mt-0">Freelance Project</span>
+                    </div>
+                    <p class="text-gray-300 mb-4">A responsive website for a campsite in Rishikesh showcasing packages,
+                        gallery, and events.</p>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex">
+                            <i class="fas fa-circle text-purple-500 text-xs mt-2 mr-2"></i>
+                            <span>Built with HTML, CSS, and JavaScript</span>
+                        </li>
+                        <li class="flex">
+                            <i class="fas fa-circle text-purple-500 text-xs mt-2 mr-2"></i>
+                            <span>Mobile responsive with SEO optimization</span>
+                        </li>
+                    </ul>
+                    <div class="mt-4">
+                        <a href="https://www.camprishikeshinn.com" target="_blank" rel="noopener noreferrer"
+                            class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-600 to-green-500 text-white rounded-lg hover:from-purple-700 hover:to-green-600 transition-all duration-300">
+                            Visit Website <i class="fas fa-external-link-alt ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="py-20 section-animate" id="contact" data-aos="fade-up" data-aos-duration="1000">
+            <div class="text-center mb-16" data-aos="fade-up" data-aos-delay="100">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-green-400 animate-gradient">Let's
+                        Connect</span>
+                </h2>
+                <p class="text-lg text-gray-400 max-w-2xl mx-auto">
+                    Have a project in mind or want to discuss opportunities? I'd love to hear from you!
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Contact Card 1 -->
+                <div class="card bg-gray-800 p-8 rounded-xl border border-gray-700 hover:border-purple-500 text-center"
+                    data-aos="fade-right" data-aos-delay="200">
+                    <div
+                        class="w-20 h-20 mx-auto mb-6 flex items-center justify-center rounded-full bg-gradient-to-r from-green-500 to-green-600 text-white text-3xl">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-white">Message Me</h3>
+                    <p class="text-gray-400 mb-6">
+                        Let's discuss your project requirements and how I can help bring your ideas to life.
+                    </p>
+                    <a href="https://api.whatsapp.com/send/?phone=9368567722&text=Hello+can+You+create+a+website+for+me%21&type=phone_number&app_absent=0"
+                        target="_blank" rel="noopener noreferrer"
+                        class="btn-hover inline-block px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-green-500 text-white font-medium transition-all duration-300 hover:from-purple-700 hover:to-green-600">
+                        Chat on WhatsApp
+                    </a>
+                </div>
+
+                <!-- Contact Card 2 -->
+                <div class="card bg-gray-800 p-8 rounded-xl border border-gray-700 hover:border-purple-500 text-center"
+                    data-aos="fade-left" data-aos-delay="300">
+                    <div
+                        class="w-20 h-20 mx-auto mb-6 flex items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-blue-600 text-white text-3xl">
+                        <i class="fas fa-file-download"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-white">My Resume</h3>
+                    <p class="text-gray-400 mb-6">
+                        Download my resume to learn more about my skills, experience, and qualifications.
+                    </p>
+                    <a href="./Resume-Jagdeesh Bhandari.pdf" download
+                        class="btn-hover inline-block px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-green-500 text-white font-medium transition-all duration-300 hover:from-purple-700 hover:to-green-600">
+                        Download Resume
+                    </a>
+                </div>
+            </div>
+
+            <!-- Social Links -->
+            <div class="flex justify-center gap-6 mt-12 text-2xl" data-aos="fade-up" data-aos-delay="400">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+                    class="text-gray-400 hover:text-purple-400 transition-colors duration-300 glow">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/jagdeesh09" target="_blank" rel="noopener noreferrer"
+                    class="text-gray-400 hover:text-purple-400 transition-colors duration-300 glow">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://twitter.com/_Jagdeesh_5" target="_blank" rel="noopener noreferrer"
+                    class="text-gray-400 hover:text-purple-400 transition-colors duration-300 glow">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.instagram.com/0_jagdeesh_9" target="_blank" rel="noopener noreferrer"
+                    class="text-gray-400 hover:text-purple-400 transition-colors duration-300 glow">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-gray-800" data-aos="fade-up" data-aos-duration="1000">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="mb-4 md:mb-0" data-aos="fade-right" data-aos-delay="100">
+                    <a class="flex items-center text-white">
+                        <span class="text-xl font-semibold">Jagdeesh.dev</span>
+                    </a>
+                    <p class="text-sm text-gray-400 mt-2">
+                        Crafting digital experiences with passion and precision.
+                    </p>
+                </div>
+
+                <div class="flex flex-col items-center md:items-end" data-aos="fade-left" data-aos-delay="200">
+                    <p class="text-sm text-gray-400 mb-2">
+                        © 2024 Jagdeesh. All rights reserved.
+                    </p>
+                </div>
+            </div>
         </div>
-        <div class="md:w-1/4 com">
-          <i ></i>
-          <!-- <img src="./pnn.png" alt="Company 1 Logo" class="object-contain h-24 md:h-auto w-full md:w-auto"> -->
-        </div>
-      </div>
-     
-      <!-- Freelance Projects, Personal Projects, Achievements, Testimonials sections go here -->
-    
-    </div>
-    
-    
-    <!-- footer -->
-    <footer class="text-gray-600 body-font px-20">
-      <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
-        <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-          <!-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-          </svg> -->
-          <span class="ml-3 text-xl text-white">Jagdeesh.dev</span>
-        </a>
-        <p class="text-sm  sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4 text-white">Feel free to reach out for collaborations, inquiries, or just to say hello.
-          <!-- <a href="https://twitter.com/knyttneve" class="text-gray-600 ml-1" rel="noopener noreferrer" target="_blank">@knyttneve</a> -->
-        </p>
-        <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start text-white">
-          
-          <a href="https://twitter.com/_Jagdeesh_5" class="ml-3 text-white">
-            <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-              <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
-            </svg>
-          </a>
-          <a href="https://www.instagram.com/0_jagdeesh_9?igsh=MXV4dWJ2dDg3NHpodA== " class="ml-3 text-white">
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-              <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
-            </svg>
-          </a>
-          <a href="www.linkedin.com/in/jagdeesh09" class="ml-3 text-white">
-            <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
-              <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
-              <circle cx="4" cy="4" r="2" stroke="none"></circle>
-            </svg>
-          </a>
-        </span>
-      </div>
     </footer>
-    
-  
-</body>
-<script>
-   document.addEventListener("DOMContentLoaded", function () {
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
 
-            mobileMenuButton.addEventListener('click', function () {
-                const expanded = this.getAttribute('aria-expanded') === 'true' || false;
-                this.setAttribute('aria-expanded', !expanded);
-                mobileMenu.classList.toggle('hidden');
-            });
+    <!-- AOS Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 100
         });
-</script>
+    </script>
+</body>
+
 </html>
