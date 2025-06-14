@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+    .todo {
+        height: 500px;
+        width: 400px;
+        border-radius: 5px;
+    }
+
+    #container-scroll {
+        overflow: auto;
+        scrollbar-width: thin;
+        scrollbar-color: none;
+        border: 5px solid black;
+    }
+
+    .col-8 {
+        overflow-wrap: break-word;
+    }
+
+    @keyframes colorchange {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            border: 3px solid #ff0000;
+
+
+            opacity: 1;
+        }
+    }
+
+    @keyframes tilt-shaking {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        25% {
+            transform: rotate(1deg);
+        }
+
+        50% {
+            transform: rotate(0eg);
+        }
+
+        75% {
+            transform: rotate(-1deg);
+        }
+
+        100% {
+            transform: rotate(0deg);
+        }
+    }
+    #header-text{
+         font-family: "Roboto Condensed", sans-serif;
+         font-optical-sizing: auto;
+    }
+    #history{
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+        border-radius: 10px;
+       
+    }
+    #todos-body{
+        border-radius: 5px;
+    }
+
+</style>
+
+<body>
+
+
+
+    <!-- Modals -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"> Task
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- delete model -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <h4>Are you sure to delete this task -:</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal" class="btn-close"
+                        data-bs-dismiss="modal" aria-label="Close">Cancle</button>
+                    <button type="button" class="btn btn-danger" id="delConfirmBtn" data-dismiss="modal"
+                        class="btn-close" data-bs-dismiss="modal" aria-label="Close"> delete</button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+
+
+                <div class="p-2 ">
+                    <label for="exampleFormControlInput1" class="form-label">
+                        <h4>Task</h4>
+                    </label>
+                    <input type="email" class="form-control  editModal" id="exampleFormControlInput1">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" class="btn-close"
+                        data-bs-dismiss="modal" aria-label="Close">Cancle</button>
+                    <button type="button" class="btn btn-primary   strong-hover-shake" id="updateTaskBtn"
+                        aria-label="Close"> yes ,save change</button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="container mt-5  " id="image-bg">
+        <div class="row p-5 d-flex aling-items-center justify-content-center  ">
+
+            <div class="todo p-3 font-bold border  border-secondary " id="container-scroll">
+
+                <h2 class="mb-3" id="header-text">Todo App
+                </h2>
+
+                <div class="row pe-5 ">
+                    <div class="col-10">
+                        <input type="text" class="form-control" id="input" !required>
+
+                        <div class="errorElement">
+
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <button class="btn btn-primary" type="button" onclick="addTask() " id="history">Add</button>
+
+                    </div>
+                </div>
+
+                <div class="container" id="task-container">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous">
+    </script>
+
+
+<script>
+
+    let todos = []
+    document.addEventListener("DOMContentLoaded", (event) => {
+       todos = JSON.parse(localStorage.getItem('todos'))
+       console.log(todos)
+       buidTodosUi();
+    });
+
+    const deleteconatiner = document.querySelector(`#delete-container`)
+    const editconatiner = document.querySelector(`#edit-container`)
+    const taskContainer = document.querySelector(`#task-container`)
+    const button1 = document.querySelector(`#button1`)
+    const button2 = document.querySelector(`#button2`)
+    const historydiv = document.querySelector(`#history-div`)
+    const history = document.querySelector(`#history`)
+    const input = document.querySelector(`#input`)
+    const errorElement = document.querySelector(`.errorElement`)
+    var editmodal = document.querySelector('.editModal')
+    const exampleModal = document.querySelector('.modal-content');
+    const delConfirmBtn = document.getElementById('delConfirmBtn');
+    const updateTaskBtn = document.querySelector('#updateTaskBtn');
+
+    var delMoldal = new bootstrap.Modal(document.getElementById('deleteModal'), {
+        keyboard: false
+    })
+    var editModalContainer = new bootstrap.Modal(document.getElementById('editModal'), {
+        keyboard: false
+    })
+
+    console.log(name)
+    let elementToRemove = null;
+    let elementToedit = '';
+
+
+
+
+    let taskElement = ''
+
+    function buidTodosUi() {
+
+        for (i = 0; i < todos.length; i++) {
+            const element = todos[i];
+
+
+            const task = element.task
+            currentIndex = i;
+
+            taskElement += ` <div class="row p-2 border mt-3" id="todos-body">
+
+                
+                
+                <div class="form-check col-1">
+        <input class="form-check-input" type="checkbox" value="" id="checkDefault" onclick="checkboxfunction()">
+         </div>
+                        <div class="col-6 text-truncate"  data-bs-toggle="modal" data-bs-target="#exampleModal"  id="history-div">
+                            ${element.task}
+                        </div>
+                        
+
+                        <div class="col-2">
+                            <button class="btn btn-danger" id="button1" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="deletetask(${currentIndex})"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                        <div class="col-2 ">
+                            <button class="btn btn-success" id="button2"   data-bs-toggle="modal" data-bs-target="#editModal "   onclick="edittask(${currentIndex})"><i class="fa-solid fa-pencil"></i></button>
+                        </div>
+                    </div>`
+
+        }
+        taskContainer.innerHTML = taskElement
+    }
+
+
+    function addTask() {
+        const isError = (input.value[0]);
+        if (isError) {
+            const newTask = {
+
+                task: input.value,
+            }
+
+            todos.push(newTask)
+            localStorage.setItem('todos', JSON.stringify(todos))
+
+            taskElement = ' '
+            buidTodosUi();
+            input.value = ''
+
+            input.style.border = '1px solid var(--bs-border-color)'
+            input.placeholder = `  `;
+
+        }
+        else {
+
+            input.placeholder = ` enter a task first    `;
+            input.style.border = '2px solid red'
+
+        }
+    }
+
+
+    function deletetask(index) {
+        elementToRemove = index;
+    }
+
+    function edittask(index) {
+        elementToedit = index;
+        let taskedit = todos[elementToedit].task
+        editmodal.value = taskedit;
+
+
+    }
+
+    taskContainer.addEventListener('click', (e) => {
+
+        document.querySelector('.modal-body').innerText = e.target.innerText
+    })
+
+
+
+    delConfirmBtn.addEventListener('click', () => {
+        todos.splice(elementToRemove, 1)
+        localStorage.setItem('todos', JSON.stringify(todos))
+
+        taskElement = ''
+        buidTodosUi();
+        delMoldal.hide();
+    })
+
+
+
+    updateTaskBtn.addEventListener('click', () => {
+        if (!editmodal.value == '') {
+            todos[elementToedit].task = editmodal.value
+            taskElement = ' '
+            buidTodosUi();
+            editModalContainer.hide();
+
+
+        }
+        else {
+            editmodal.placeholder = ` enter a task first`;
+            editmodal.style.border = '1px solid red';
+            editmodal.style.animation = ' tilt-shaking 0.1s 5';
+        }
+
+    })
+
+    function checkboxfunction() {
+
+        const checkBox = document.getElementById("checkDefault");
+        const todosbody = document.getElementById("todos-body");
+
+
+
+
+        if (checkBox.checked == true) {
+            console.log(historydiv)
+            todosbody.style.backgroundColor = "yellowgreen";
+            document.querySelector(`#history-div`).style.textDecoration = "line-through"
+        } else {
+            todosbody.style.backgroundColor = "white";
+            document.querySelector(`#history-div`).style.textDecoration = "none"
+        }
+    }
+
+</script>
+
+</html>
